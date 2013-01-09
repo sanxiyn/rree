@@ -1,0 +1,6 @@
+#[link(name = "rree", vers="0.0")];
+#[crate_type = "lib"];
+
+extern mod std;
+
+mod parse;
