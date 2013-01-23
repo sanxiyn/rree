@@ -56,9 +56,9 @@ impl Parser {
         }
         let subs = vec::tailn(self.stack, i);
         self.stack.truncate(i);
-        let re = match subs.len() {
-            0 => @Empty,
-            1 => subs[0],
+        let re = match subs {
+            [] => @Empty,
+            [sub] => sub,
             _ => @Concat(subs)
         };
         self.stack.push(re);
@@ -70,9 +70,9 @@ impl Parser {
         }
         let subs = vec::tailn(self.stack, i);
         self.stack.truncate(i);
-        let re = match subs.len() {
-            0 => fail,
-            1 => subs[0],
+        let re = match subs {
+            [] => fail,
+            [sub] => sub,
             _ => @Alternate(subs)
         };
         self.stack.push(re);
